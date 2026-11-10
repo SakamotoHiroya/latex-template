@@ -1,0 +1,47 @@
+{
+  "name": "LaTeX (TeX Live)",
+  // TeX Live 公式イメージ（フルスキーム・日本語対応・amd64/arm64 両対応）
+  // 再現性を重視するなら "texlive/texlive:TL2025-historic" のように年版で固定する
+  "image": "texlive/texlive:latest",
+  "features": {
+    // 非 root ユーザー (vscode) と git などの基本ツールを追加
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": false,
+      "installOhMyZsh": false,
+      "username": "vscode",
+      "upgradePackages": false
+    }
+  },
+  "remoteUser": "vscode",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "james-yu.latex-workshop"
+      ],
+      "settings": {
+        // ビルドは常に .latexmkrc に従う latexmk 1本に統一
+        "latex-workshop.latex.tools": [
+          {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": ["%DOC%"],
+            "env": {}
+          }
+        ],
+        "latex-workshop.latex.recipes": [
+          { "name": "latexmk (.latexmkrc)", "tools": ["latexmk"] }
+        ],
+        "latex-workshop.latex.outDir": "%DIR%/out",
+        "latex-workshop.latex.autoBuild.run": "onSave",
+        "latex-workshop.latex.autoClean.run": "never",
+        "latex-workshop.view.pdf.viewer": "tab",
+        "latex-workshop.formatting.latex": "latexindent",
+        "latex-workshop.linting.chktex.enabled": true,
+        "[latex]": {
+          "editor.wordWrap": "on",
+          "editor.tabSize": 2
+        }
+      }
+    }
+  }
+}

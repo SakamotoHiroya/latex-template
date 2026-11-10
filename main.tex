@@ -1,0 +1,27 @@
+\documentclass[a4paper,11pt]{ltjsarticle}
+
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{refs.bib}
+\usepackage[hidelinks]{hyperref}
+
+\title{サンプル文書}
+\author{著者名}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{はじめに}
+これは Dev Container 上の LuaLaTeX + latexmk で組版したサンプルです．
+文献の引用もできます\cite{knuth1984}．
+
+\section{数式}
+式\eqref{eq:euler}はオイラーの等式です．
+\begin{equation}
+  e^{i\pi} + 1 = 0 \label{eq:euler}
+\end{equation}
+
+\printbibliography
+\end{document}
